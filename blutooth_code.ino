@@ -1,19 +1,19 @@
 #include <Adafruit_NeoPixel.h>
 
 #define LED_PIN           13
-#define LED_COUNT         10  // Change this to match the number of LEDs in your strip
-#define LED_DEGREE_SPREAD 36 // Each LED will represent 6 degrees
+#define LED_COUNT         10  
+#define LED_DEGREE_SPREAD 36 
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 int currentLED = -1;
 uint32_t color;
-int brightness = 255; // Initial brightness level
+int brightness = 255; 
 
 void setup() {
   Serial.begin(9600);
   strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
+  strip.show(); 
 }
 
 void loop() {
@@ -21,11 +21,11 @@ void loop() {
     String input = Serial.readStringUntil('\n');
     if (input.startsWith("brightness")) {
       brightness = input.substring(11).toInt();
-      brightness = constrain(brightness, 0, 255); // Constrain brightness to the valid range
+      brightness = constrain(brightness, 0, 255); 
       strip.setBrightness(brightness);
       strip.show();
 
-      // Print the current brightness level to the serial monitor
+      
       Serial.print("Brightness level set to: ");
       Serial.println(brightness);
     } else {
